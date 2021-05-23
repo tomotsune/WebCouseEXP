@@ -1,81 +1,74 @@
 <template>
-  <el-container>
-    <el-header style="font-family:Arial">
-      Created by HaipinHu
-    </el-header>
-    <el-main>
 
-      <el-row>
-        <el-col :span="12" :offset="6">
-          <el-input
-              v-model="input"
-              readonly>
-          </el-input>
-        </el-col>
-      </el-row>
+  <el-row>
+    <el-col :span="12" :offset="6">
+      <el-input
+          v-model="input"
+          readonly>
+      </el-input>
+    </el-col>
+  </el-row>
 
-      <el-row>
-        <el-col :span="3" :offset="6">
-          <el-button type="primary" round @click="enterNum(7)">7</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(8)">8</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(9)">9</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="success" round @click="enterOpr('+')">+</el-button>
-        </el-col>
-      </el-row>
+  <el-row>
+    <el-col :span="3" :offset="6">
+      <el-button type="primary" round @click="enterNum(7)">7</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(8)">8</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(9)">9</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="success" round @click="enterOpr('+')">+</el-button>
+    </el-col>
+  </el-row>
 
-      <el-row>
-        <el-col :span="3" :offset="6">
-          <el-button type="primary" round @click="enterNum(4)">4</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(5)">5</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(6)">6</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="success" round @click="enterOpr('-')">-</el-button>
-        </el-col>
-      </el-row>
+  <el-row>
+    <el-col :span="3" :offset="6">
+      <el-button type="primary" round @click="enterNum(4)">4</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(5)">5</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(6)">6</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="success" round @click="enterOpr('-')">-</el-button>
+    </el-col>
+  </el-row>
 
-      <el-row>
-        <el-col :span="3" :offset="6">
-          <el-button type="primary" round @click="enterNum(1)">1</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(2)">2</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" round @click="enterNum(3)">3</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="success" round @click="enterOpr('*')">*</el-button>
-        </el-col>
-      </el-row>
+  <el-row>
+    <el-col :span="3" :offset="6">
+      <el-button type="primary" round @click="enterNum(1)">1</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(2)">2</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="primary" round @click="enterNum(3)">3</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="success" round @click="enterOpr('*')">*</el-button>
+    </el-col>
+  </el-row>
 
-      <el-row>
-        <el-col :span="3" :offset="6">
-          <el-button type="primary" round @click="enterNum(0)">0</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="warning" round @click="equal()">=</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="danger" round @click="clear()">C</el-button>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="success" round @click="enterOpr('/')">/</el-button>
-        </el-col>
+  <el-row>
+    <el-col :span="3" :offset="6">
+      <el-button type="primary" round @click="enterNum(0)">0</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="warning" round @click="equal()">=</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="danger" round @click="clear()">C</el-button>
+    </el-col>
+    <el-col :span="3">
+      <el-button type="success" round @click="enterOpr('/')">/</el-button>
+    </el-col>
 
-      </el-row>
-    </el-main>
-  </el-container>
+  </el-row>
 </template>
 
 <script setup>
