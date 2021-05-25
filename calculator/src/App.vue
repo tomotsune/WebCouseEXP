@@ -12,6 +12,9 @@
         <el-tab-pane label="提交表单" name="third">
           <Form></Form>
         </el-tab-pane>
+        <el-tab-pane label="测试" name="fourth">
+          <Test></Test>
+        </el-tab-pane>
       </el-tabs>
     </el-main>
     <el-footer height="40px" style="background-color:#252319; text-align: center">
@@ -28,6 +31,7 @@
 import Calculator from './components/Calculator.vue'
 import ShoppingCar from './components/ShoppingCar.vue'
 import Form from './components/Form.vue'
+import Test from './components/Test.vue'
 import {ref} from "vue";
 
 let activeName = ref('first')
