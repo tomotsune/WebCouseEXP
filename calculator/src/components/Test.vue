@@ -65,12 +65,14 @@ const verifyPhoneNum = () => {
 }
 let amount = ref('')
 const transform = () => {
+  console.log(amount.value)
   let unit = ["", "拾", "佰", "仟", "万", "拾万", "百万", "仟万", "亿", "拾亿", "百亿", "仟亿"]
   let capital = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"]
 
-  let reg = /^([1-12]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/
+  let reg = /^([1-9]\d{0,12}|0)([.]?|(\.\d{1,2})?)$/
   if (!reg.test(amount.value)) amount = ''
   else {
+    console.log("enter else sentence")
     let result = ''
     if (amount.value.indexOf('.') !== -1) {
       var sub = amount.value.split('.');
@@ -84,15 +86,18 @@ const transform = () => {
     } else {
       // input >=3 err
       for (let i = 0; i < amount.value.length; i++) {
+        console.log("i=", i)
         if (i + 1 !== amount.value.length || amount.value[i] !== '0') {
           result += capital[(amount.value[i])]
           result += unit[amount.value.length - 1 - i]
         }
       }
-      result += "元整"
     }
-    amount.value = result
+    console.log(result);
+    result += "元整"
   }
+  amount.value = result
+}
 
 }
 </script>
