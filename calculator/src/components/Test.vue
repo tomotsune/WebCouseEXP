@@ -47,6 +47,7 @@ const getDate = () => {
     let day = parseInt(dateStr.value.substr(8, 2), 10)
     console.log("day", day)
     if ((day === 1)) {
+      months[1] = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28
       --month;
       day = months[month - 1]
     } else {
@@ -63,6 +64,7 @@ const verifyPhoneNum = () => {
     phoneNum.value = "correct"
   else phoneNum.value = "error"
 }
+
 let amount = ref('')
 const transform = () => {
   let unit = ["", "拾", "佰", "仟", "万", "拾万", "百万", "仟万", "亿", "拾亿", "百亿", "仟亿"]
@@ -72,40 +74,32 @@ const transform = () => {
   if (!reg.test(amount.value)) amount.value = ''
   else {
     let result = ''
-    if (amount.value.indexOf('.') !== -1) {
-      var sub = amount.value.split('.');
-      for (let i = 0; i < sub[0].length; i++) {
-        result += unit[sub[0][i] - 1]
-        result += capital[amount.value.length - 2 - i]
-      }
-      result += "元"
-      result += unit[sub[1][0] - 1] + 角
-      result += unit[sub[1][1] - 1] + 分
-    } else {
-      for (let i = 0; i < amount.value.length; i++) {
-        result += capital[(amount.value[i])]
-        result += unit[amount.value.length - 1 - i]
-        if (amount.value[i + 1] === '0') {
-          for (let j = i+1; j < amount.value.length; j++) {
-            console.log("into loop")
-            if (amount.value[j] !== '0') {
-              // 壹仟零零佰元整
-              result += capital[0]
-              console.log("j", j)
-              i = j;
-              break
-            } else i = j + 1
-          }
+
+    // Splitting the input amount into whole number and decimal parts
+    let both = amount.value.split('.')
+
+    // Translating integer part
+    for (let i = 0; i < both[0].length; i++) {
+      result += capital[(both[0][i])]
+      result += unit[both[0].length - 1 - i]
+      if (both[0][i + 1] === '0') {
+        for (let j = i + 1; j < both[0].length; j++) {
+          if (both[0][j] !== '0') {
+            result += capital[0]
+            i = j - 1;
+            break
+          } else i = j
         }
-
-
-        /*if (i + 1 !== amount.value.length || amount.value[i] !== '0') {
-          result += capital[(amount.value[i])]
-          result += unit[amount.value.length - 1 - i]
-        }*/
       }
     }
-    result += "元整"
+    result += "元"
+
+    // Translating the decimal part
+    if (both[1] !== undefined) {
+      result += both[1][0] === '0' && both[1][1] !== undefined ? "零" : capital[both[1][0]] + "角"
+      result += both[1][1] !== undefined ? capital[both[1][1]] + "分" : ''
+    } else result += "整"
+
     amount.value = result
   }
 
