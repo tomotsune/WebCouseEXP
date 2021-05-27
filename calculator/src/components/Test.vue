@@ -47,8 +47,10 @@ const getDate = () => {
     let day = parseInt(dateStr.value.substr(8, 2), 10)
     console.log("day", day)
     if ((day === 1)) {
-      months[1] = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28
       --month;
+      if (month === 2) {
+        months[1] = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28
+      }
       day = months[month - 1]
     } else {
       --day
@@ -57,6 +59,7 @@ const getDate = () => {
   }
 
 }
+
 let phoneNum = ref('')
 const verifyPhoneNum = () => {
   let reg = /\d{0,3}[^0-1]{3}\d{4}/
