@@ -3,7 +3,7 @@
   <el-input
       type="text"
       placeholder="请输入内容"
-      v-model="form.name"
+      v-model.lazy.trim="form.name"
       maxlength="10"
       show-word-limit
   >
@@ -44,8 +44,6 @@ const onsubmit = () => {
   for (const user of users.value) {
     if (user.name === form.name) {
       alert("The name you input have been occupied!")
-    } else {
-      form.name = ''
     }
   }
 }
