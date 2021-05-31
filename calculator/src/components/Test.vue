@@ -70,8 +70,8 @@ const verifyPhoneNum = () => {
 
 let amount = ref('')
 const transform = () => {
-  let unit = ["", "拾", "佰", "仟", "万", "拾万", "百万", "仟万", "亿", "拾亿", "百亿", "仟亿"]
   let capital = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"]
+  let unit = ["", "拾", "佰", "仟", "万", "拾万", "百万", "仟万", "亿", "拾亿", "百亿", "仟亿"]
 
   let reg = /^([1-9]\d{0,12}|0)([.]?|(\.\d{1,2})?)$/
   if (!reg.test(amount.value)) amount.value = ''
@@ -80,11 +80,14 @@ const transform = () => {
 
     // Splitting the input amount into whole number and decimal parts
     let both = amount.value.split('.')
-
     // Translating integer part
     for (let i = 0; i < both[0].length; i++) {
       result += capital[(both[0][i])]
-      result += unit[both[0].length - 1 - i]
+      result += unit[(both[0].length - 1 - i) % 4]
+      if (both[0].length >= 4 && i + 5 === both[0].length) result += "万";
+      if (both[0].length >= 8 && i + 9 === both[0].length) result += "亿";
+      // 8 9 10 11 亿|  4 5 6 7 万| 0 1 2 3
+
       if (both[0][i + 1] === '0') {
         for (let j = i + 1; j < both[0].length; j++) {
           if (both[0][j] !== '0') {
