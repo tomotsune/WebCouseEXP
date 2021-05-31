@@ -50,6 +50,9 @@ const getDate = () => {
       --month;
       if (month === 2) {
         months[1] = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28
+      } else if (month === 0) {
+        month = 12
+        --year
       }
       day = months[month - 1]
     } else {
