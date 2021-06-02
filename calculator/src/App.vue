@@ -15,8 +15,11 @@
         <el-tab-pane label="测试" name="fourth">
           <Test></Test>
         </el-tab-pane>
-        <el-tab-pane label="test" name="fi">
+        <el-tab-pane label="test" name="fifth">
           <EXP></EXP>
+        </el-tab-pane>
+        <el-tab-pane label="todos" name="sixth">
+          <Todos></Todos>
         </el-tab-pane>
       </el-tabs>
     </el-main>
@@ -36,6 +39,7 @@ import ShoppingCar from './components/ShoppingCar.vue'
 import Form from './components/Form.vue'
 import Test from './components/Test.vue'
 import EXP from './components/EXP_3.vue'
+import Todos from './components/Todos.vue'
 import {ref} from "vue";
 
 let activeName = ref('first')
