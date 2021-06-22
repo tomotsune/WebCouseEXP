@@ -1,5 +1,4 @@
 <template>
-
   <el-container>
     <el-main>
       <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -21,13 +20,18 @@
         <el-tab-pane label="todos" name="sixth">
           <Todos></Todos>
         </el-tab-pane>
+        <el-tab-pane label="articleEditor" name="seventh">
+          <ArticleEditor></ArticleEditor>
+        </el-tab-pane>
+        <el-tab-pane label="OS" name="eighth">
+          <OS></OS>
+        </el-tab-pane>
       </el-tabs>
     </el-main>
     <el-footer height="40px" style="background-color:#252319; text-align: center">
       <el-link style="color: #FFFFFF" href="https://github.com/tomotsune/" icon="el-icon-user">github</el-link>
     </el-footer>
   </el-container>
-
   <!--<HelloWorld></HelloWorld>-->
   <!--<ShoppingCar></ShoppingCar>-->
 
@@ -40,9 +44,12 @@ import Form from './components/Form.vue'
 import Test from './components/Test.vue'
 import EXP from './components/EXP_3.vue'
 import Todos from './components/Todos.vue'
+import ArticleEditor from "./components/admin/ArticleEditor.vue";
+import OS from "./components/OS.vue"
+
 import {ref} from "vue";
 
-let activeName = ref('first')
+let activeName = ref('eighth')
 
 const handleClick = (tab, event) => {
   console.log(tab, event);

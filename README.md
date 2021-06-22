@@ -53,3 +53,41 @@ export default {
 }
 </script>
 ~~~
+### 引入vue-router ###
+[参考](https://zhuanlan.zhihu.com/p/365264520) 
+#### 安装 ####
+    npm install vue-router@4
+#### 引入组件 ####
+~~~json
+import {createRouter, createWebHashHistory} from 'vue-router'
+~~~
+#### 配置路由 ####
+~~~json
+//定义路由（和组件）
+const Home = ()=>import('./components/home.vue');
+const About = ()=>import('./components/about.vue');
+const Product = ()=>import('./components/product.vue');
+
+// 定义路由
+const routes = [
+  { path: '/', component: Home },
+  { path: '/about', component: About },
+  { path: '/product', component: Product },
+];
+
+
+//创建路由
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,//定义的路由
+})
+
+
+//将路由加入到实例
+use(router)
+~~~
+#### 路由应用 ####
+~~~http
+<router-view> 组件显示容器
+<router-link> 链接
+~~~
